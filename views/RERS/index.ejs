@@ -1,0 +1,48 @@
+<!--index.ejs-->
+
+<head>
+    <style>
+        .class3 {
+            background-color: lightsalmon
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="row">
+        <% RERS.forEach( function(model,i) { %>
+        <div class="card col-12 col-lg-6 col-sm-12">
+            <a class="font-weight-bold " style="font-size:30px;margin-left:20px" href="/RERS/detail/<%= model.id%>">
+                <%= model.pptt %></a>
+            <div class="row">
+                <div style="margin-right: 40px; margin-left:40px;margin-bottom:10px"><img width="150" height="170"
+                        src="<%= model.url %>" object-fit:cover></div>
+                <div>
+                    <table class="table table-bordered" style="width:400px">
+                        <tr>
+                            <td><label class="font-weight-bold">Estate:</label><%=model.est%></td>
+                        </tr>
+                        <tr>
+                            <td><label class="font-weight-bold">Gross Area:</label><%=model.gro%>
+                                sq feet</td>
+                        </tr>
+                        <tr>
+                            <td><label class="font-weight-bold">Rent:</label>$<%=model.rent%></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>

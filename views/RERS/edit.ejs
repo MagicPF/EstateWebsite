@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div class="container">
+        <div class="font-weight-bold" style="font-size:30px" id="form_title">Property Create form
+        </div>
+        <form action="/RERS/edit/<%=RERS.id%>" method="POST">
+            <div class="row form-group">
+                <div class="col-6"><label style="font-size:25px; ">Property title:</label></div>
+                <div class="col-6"><label style="font-size:25px; ">Image URL:</label></div>
+                <div class="col-6"><input class="form-control" name=RERS[pptt] value="<%=RERS.pptt%>" required></div>
+                <div class="col-6"><input type = "url" class="form-control" name=RERS[url] value="<%=RERS.url%>" required></div>
+                <div class="col-6"><label style="font-size:25px; ">Estate:</label></div>
+                <div class="col-6"><label style="font-size:25px; ">Bedrooms:</label></div>
+                <div class="col-6"><select class="form-control" onchange="teamSelected(this.value)" name="RERS[est]" required>
+                        <option value="Festival City">Festival City</option>
+                        <option value="Hongkong City">Hongkong City</option>
+                        <option value="Shanghai City">Shanghai City</option>
+                    </select></div>
+                <div class="col-6"> <input class="form-control" type="number" name="RERS[bdr]" value="<%=RERS.bdr%>" required>
+                </div>
+                <div class="col-6"><label style="font-size:25px; ">Gross Area:</label></div>
+                <div class="col-6"><label style="font-size:25px; ">Expected Tenants:</label></div>
+                <div class="col-6"> <input class="form-control" type="number" name="RERS[gro]" value="<%=RERS.gro%>" required>
+                </div>
+                <div class="col-6"> <input class="form-control" type="number" name="RERS[ET]" value="<%=RERS.ET%>" required>
+                </div>
+                <div class="col-6"><label style="font-size:25px; ">Rent:</label></div>
+                <div><input class="form-control" type="checkbox" id="hp" name=RERS[hp] style="margin-left: 15px; ">
+                </div>
+                <div style="margin-left: 20px; margin-top: 5px;">Highlighted Property</div>
+                <div class="col-6"> <input class="form-control" type="number" name="RERS[rent]" value="<%=RERS.rent%>" required>
+                </div>
+                <div class="col-6"><button type="submit" class="btn btn-primary ">Submit</button></div>
+            </div>
+        </form>
+
+        <form action="/RERS/delete/<%=RERS.id%>" method="POST">
+            <div class="col-6"><button class="btn btn-danger " href="/RERS/delete/<%=RERS.id%>">Delete</button></div>
+
+        </form>
+    </div>
+    <script>
+        var a = document.querySelector('option[value="<%= RERS.est%>"]')
+        a.selected = true;
+
+        var b = document.querySelector('input[type=checkbox]')
+        if ('<%=RERS.hp%>' == 'on')
+            b.checked = true;
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

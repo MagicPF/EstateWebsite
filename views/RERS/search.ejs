@@ -1,0 +1,110 @@
+<!--index.ejs-->
+
+<body>
+        <form action="/RERS/search" method="GET">
+    
+    <div class="row">
+        
+        <% RERS.forEach(function(model) { %>
+        <div class="card col-12 col-lg-4 col-sm-12" id="ans">
+            <div class="row" style="margin-left: 10px;">
+                <div class="col-12">
+                    <img src="<%=model.url%>" id="pic">
+                </div>
+                <div class="col-12">
+                    <a class="font-weight-bold" style="font-size: 30px;"
+                        href="/RERS/detail/<%= model.id%>"><%=model.pptt%></a>
+                </div>
+                <div class="col-12">
+                    <table class="table table-bordered" style="width:400px">
+                        <tr>
+                            <td><label class="font-weight-bold">Estate:</label><%=model.est%></td>
+                        </tr>
+                        <tr>
+                            <td><label class="font-weight-bold">Gross Area:</label><%=model.gro%>
+                                sq feet</td>
+                        </tr>
+                        <tr>
+                            <td><label class="font-weight-bold">Rent:</label>$<%=model.rent%></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <%});%>
+       
+        <div class="col-12 col-lg-4 col-sm-12">
+            <div class="row" style="line-height:45px">
+                <% const current = parseInt(req.query.page) || 1; %>
+                <div class="col-12 col-lg-4 col-sm-12" >
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link"
+                                    href="/RERS/search/?page=<%= Math.max(current-1, 1) %>">Previous</a>
+                            </li>
+
+                            <% for (i = 1; i <= count; i++) { %>
+                            <li class="page-item">
+                                <a class="page-link" href="/RERS/search/?page=<%= i %>"><%= i %></a>
+                            </li>
+                            <% } %>
+
+                            <li class="page-item">
+                                <a class="page-link"
+                                    href="/RERS/search/?page=<%= Math.min(current+1, count) %>">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    
+                </div>
+                
+                <div class="col-12">
+                    <a class="font-weight-bold" style="font-size:40px">Property Search</a>
+                </div>
+                <div class="col-2"> <label style="font-size:20px">Estate:</label></div>
+                <div class="col-10">
+                    <select class="form-control" onchange="teamSelected(this.value)" name="est">
+                        <option value="Festival City">Festival City</option>
+                        <option value="Hongkong City">Hongkong City</option>
+                        <option value="Shanghai City">Shanghai City</option>
+                    </select>
+                </div>
+                <div class="col-3"> <label style="font-size:20px">Bedrooms:</label></div>
+                <div class="col-9"> <input class="form-control" type="number" name="bdr"></div>
+                <div class="col-12"> <label style="font-size:20px">Area(Sq feet):</label></div>
+                <div class="col-2"> <label style="font-size:20px">Min:</label></div>
+                <div class="col-3"> <input class="form-control" type="number" name="amin" value="0"></div>
+                <div class="col-2"> <label style="font-size:20px">Max:</label></div>
+                <div class="col-4"> <input class="form-control" type="number" name="amax" value="2000"></div>
+                <div class="col-12"> <label style="font-size:20px">Rent(HK$):</label></div>
+                <div class="col-2"> <label style="font-size:20px">Min:</label></div>
+                <div class="col-3"> <input class="form-control" type="number" name="rmin" value="0"></div>
+                <div class="col-2"> <label style="font-size:20px">Max:</label></div>
+                <div class="col-4"> <input class="form-control" type="number" name="rmax" value="2000"></div>
+                <div class="col-4"><button type="submit" class="btn btn-primary ">Submit</button></div>
+            </div>
+        </div>
+        </form>
+    </div>
+    <style>
+        #ans {
+            height: 480px;
+        }
+
+        #pic {
+            width: 400px;
+            height: 200px;
+            object-fit: cover;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>

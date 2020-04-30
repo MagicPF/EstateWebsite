@@ -1,0 +1,145 @@
+<body >
+    <div class="container">
+        <div class="row">
+            <div id="house" class="card col-12 col-lg-10 col-sm-12">
+                <!-- <form action="/user/<%=req.session.userid%>/add/<%=RERS.id%>" method="POST"> -->
+
+                <div class="row">
+                    <div class="col-12 col-lg-12 col-sm-12">
+                        <lable style="font-size: 50px;">
+                            <%=RERS.pptt %>
+                        </lable>
+                        <%if(RERS.worksFor.length == 0){%>
+                        <button id="mybtn" type="submit" class="btn btn-primary" onclick="CRent('<%= RERS.id %>')">Co-rent</button>
+                        <%}else{%>
+                        <button id="MObtn" type="submit" class="btn btn-danger" onclick="MO('<%= RERS.id %>')">Move_Out</button>
+                        <%}%>
+                    </div>
+                    <div class="col-5">
+                        <img src="<%=RERS.url%>" style="width:340px;height:390px " object-fit:cover>
+                    </div>
+
+                    <div class="col-12 col-lg-7">
+                        <table class="table table-bordered">
+                            <tr>
+                                <td>
+                                    <label class="font-weight-bold" id="title">Estate:</label>
+                                    <label id="cnt">
+                                        <%=RERS.est%>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="font-weight-bold" id="title">Gross Area:</label>
+                                    <label id="cnt">
+                                        <%=RERS.gro%> sq feet</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="font-weight-bold" id="title">Rent:</label>
+                                    <label id="cnt">
+                                        $
+                                        <%=RERS.rent%>
+                                </td>
+                                </label>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="font-weight-bold" id="title">Bedroom:</label>
+                                    <label id="cnt">
+                                        <%=RERS.bdr%>
+                                </td>
+                                </label>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="font-weight-bold" id="title">Expected Tenants:</label>
+                                    <label id="cnt">
+                                        <%=RERS.ET%>
+                                </td>
+                                </label>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="font-weight-bold" id="title">Created:</label>
+                                    <label id="cnt">
+                                        <%var d = new Date(RERS.createdAt);%>
+                                            <%=d.getFullYear()%>/
+                                                <%=d.getMonth()%>/
+                                                    <%=d.getDate()%>
+                                </td>
+                                </label>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="font-weight-bold" id="title">Updated:</label>
+                                    <label id="cnt">
+                                        <%var d = new Date(RERS.updatedAt);%>
+                                            <%=d.getFullYear()%>/
+                                                <%=d.getMonth()%>/
+                                                    <%=d.getDate()%>
+                                </td>
+                                </label>
+                            </tr>
+
+                        </table>
+                        <style>
+                            #title {
+                                font-size: 15px;
+                            }
+
+                            table {
+                                height: auto;
+                            }
+
+                            tr {
+                                height: 30px;
+                            }
+
+                            #cnt {
+                                font-size: 14px;
+                            }
+                        </style>
+                    </div>
+                </div>
+                <!-- </form> -->
+            </div>
+
+        </div>
+    </div>
+    <script>
+       async function CRent() {
+            var r = confirm("Co-rent it?");
+
+            if (r) {
+                var response = await fetch("/user/<%=req.session.userid%>/add/<%=RERS.id%>", {
+                    method: "POST",
+                    credentials: 'same-origin',
+                });
+                var html = await response.text();
+                alert(html);
+            }
+            else {
+                alert("cancelled");
+            }
+        }
+        async function MO() {
+            var r = confirm("Move Out?");
+
+            if (r) {
+                var response = await fetch("/user/<%=req.session.userid%>/remove/<%=RERS.id%>", {
+                    method: "POST",
+                    credentials: 'same-origin',
+                });
+                var html = await response.text();
+                alert(html);
+            }
+            else {
+                alert("cancelled");
+            }
+
+        };
+    </script>
+</body>
